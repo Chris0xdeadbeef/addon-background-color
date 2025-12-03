@@ -16,12 +16,15 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22.14.0
+          node-version: 22
           cache: 'npm'
           cache-dependency-path: package.json
 
       - name: Install dependencies
         run: npm ci
+        
+      - name: Lint
+        run: npm lint:check
 
       - name: Build project
         run: npm run build
@@ -29,8 +32,9 @@ jobs:
       # ZIP Chrome extension
       - name: Package Chrome extension
         run: |
-          cd dist/chrome
-          zip -r ../../extension-chrome.zip .
+          cd .output/extension/chrome
+          zip -r ../../../extension-chrome.zip .
+
 
       # ZIP Firefox extension
       - name: Package Firefox extension
