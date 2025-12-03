@@ -29,18 +29,17 @@ jobs:
       - name: Build project
         run: npm run build
 
-      # ZIP Chrome extension
-      - name: Package Chrome extension
-        run: |
-          cd .output/extension/chrome
-          zip -r ../../../extension-chrome.zip .
+      - name: Upload Firefox artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: firefox-extension
+          path: ./dist/firefox
 
-
-      # ZIP Firefox extension
-      - name: Package Firefox extension
-        run: |
-          cd dist/firefox
-          zip -r ../../extension-firefox.zip .
+      - name: Upload Chrome artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: chrome-extension
+          path: ./dist/chrome
 
       # Upload artefacts
       - name: Upload Chrome package
