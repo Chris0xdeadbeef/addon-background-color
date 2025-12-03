@@ -39,7 +39,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: chrome-extension
-          path: ./.output/chrome
+          path: ./.output/chrome-mv3
 
       # Upload artefacts
       - name: Upload Chrome package
